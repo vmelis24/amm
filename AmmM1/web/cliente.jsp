@@ -30,7 +30,7 @@ and open the template in the editor.
             <div id="content">
         <h1>Prodotti disponibili</h1>
         <!-- tabella contenente i prodotti disponibili nel catalogo --> 
-        
+        <h3>Bentornato,$[cliente_autenticato.nome]$[cliente_autenticato.cognome]</h3>
         <table>
             <tr class="intestazione">
                 <th>Nome</th>

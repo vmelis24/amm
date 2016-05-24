@@ -15,7 +15,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="smartphone,cellulari online">
         <meta name="description" content="vendita telefoni online">
-        <link href="M2/css/style_css.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/style_css.css" rel="stylesheet" type="text/css" media="screen">
    
     </head>
     <body>

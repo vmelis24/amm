@@ -5,6 +5,12 @@
  */
 package pack;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -13,6 +19,9 @@ public class UtentiVenditoriFactory {
     
     // Attributi
     private static UtentiVenditoriFactory singleton;
+    private String connectionString;
+    
+    
     public static UtentiVenditoriFactory getInstance() {
         if (singleton == null) {
             singleton = new UtentiVenditoriFactory();
@@ -20,75 +29,144 @@ public class UtentiVenditoriFactory {
         return singleton;
     }
    
-    private ArrayList<UtentiVenditori> listaVenditori = new ArrayList<UtentiVenditori>();
-   
-    /* Costruttore */
+    
+      /* Costruttore */
     private UtentiVenditoriFactory() {
-           
-                // venditori
-        UtentiVenditori venditori_1 = new UtentiVenditori();
-        venditori_1.setUsername("NeriGiuseppe");
-        venditori_1.setPassword("3");
-        venditori_1.setNome("Giuseppe");
-        venditori_1.setCognome("Neri");
-        venditori_1.setId(3);
-        listaVenditori.add(venditori_1);
         
-        UtentiVenditori venditori_2 = new UtentiVenditori();
-        venditori_2.setUsername("MarioVerdi");
-        venditori_2.setPassword("4");
-        venditori_2.setNome("Mario");
-        venditori_2.setCognome("Verdi");
-        venditori_2.setId(4);
-        listaVenditori.add(venditori_2);
-        
-        
-        //dati relativi all’inserimento di un oggetto
-        
-        Oggetti oggetti_1=new Oggetti();
-        oggetti_1.setNomeProdotto("iphone6");
-        oggetti_1.setUrlProdotto("M2/img/iphone6.jpg");
-        oggetti_1.setDescrizione("Fotocamera da 8 Megapixel Sistema Operativo iOS8 "
-                                + "Display retina da 4,7 - Memoria interna 64 GB");
-        oggetti_1.setPrezzo(779);
-        oggetti_1.setQuantita(2);
-        
-        
-        Oggetti oggetti_2=new Oggetti();
-        oggetti_2.setNomeProdotto("samsungs7");
-        oggetti_2.setUrlProdotto("M2/img/samsungs7.jpg");
-        oggetti_2.setDescrizione("Fotocamera Dual Pixel da 12 Megapixel "
-                                + "Android 6.0 Marshmallow - Memoria 32GB - GPS");
-        oggetti_2.setPrezzo(769);
-        oggetti_2.setQuantita(4);
-    }    
-      
-     public ArrayList<UtentiVenditori> getUtentiVenditoriList()
-    {
-        return listaVenditori;
-    }
-        
-    
-    public ArrayList<UtentiVenditori> getUserList() 
-    {
-        ArrayList<UtentiVenditori> listaVenditori = new ArrayList<UtentiVenditori>();
-        
-        listaVenditori.addAll(listaVenditori);
-       
-        
-        return listaVenditori;
     }
     
     
-    public ArrayList<UtentiVenditori> getVenditoriList() 
+    public UtentiVenditori getUtentiVenditori(String username_v, String password_v)
     {
-        ArrayList<UtentiVenditori> listaVenditori = new ArrayList<UtentiVenditori>();
-        
-        listaVenditori.addAll(listaVenditori);
-       
-        
-        return listaVenditori;
+        try
+        {
+            Connection conn = DriverManager
+                    .getConnection(connectionString, 
+                            "valentinamelis",
+                            "valentinamelis");
+            // sql command
+            String query = "select * from venditori where "
+                    + "password = ? and username = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // dati
+            stmt.setString(1, password_v);
+            stmt.setString(2, username_v);
+            //
+            ResultSet set = stmt.executeQuery();
+            
+            if(set.next())
+            {
+                
+                UtentiVenditori utentivenditori = new UtentiVenditori();
+                utentivenditori.id=set.getInt(set.getInt("id"));
+                utentivenditori.nome=set.getString("nome");
+                utentivenditori.cognome=set.getString("cognome");
+                utentivenditori.username_v=set.getString("username");
+                utentivenditori.password_v=set.getString("password");
+               
+                query = "select oggetti.id, oggetti.nomeprodotto from oggetti "
+                        + "join venditori "
+                        + "on venditori.id = oggetti.idvenditore "
+                        + "where oggetti.idvenditore="+utentivenditori.id;
+                Statement st = conn.createStatement();
+                ResultSet res2 = st.executeQuery(query);
+                while(res2.next())
+                {
+                    Oggetti o = new Oggetti();
+                    o.setId(res2.getInt("id"));
+                    o.setNomeProdotto(res2.getString("nomeprodotto"));
+                    utentivenditori.oggettiInseriti.add(o);
+                }
+                st.close();
+                stmt.close();
+                conn.close();
+                
+                return utentivenditori;
+            }
+            
+            stmt.close();
+            conn.close();
+        }
+        catch(SQLException e)
+        {
+            
+        }
+        return null;
     }
+    
+    
+    
+    
+   public UtentiVenditori getUtentiVenditori(int id)
+    {
+        try 
+        {
+            // path, username, password
+            Connection conn = DriverManager.getConnection(connectionString, "valentinamelis", "valentinamelis");
+            // Query
+            String query = "select * from venditori where "
+                    + " id=?";
+            
+            // Prepared Statement
+            PreparedStatement stmt = conn.prepareStatement(query);
+            // Si associano i valori
+            stmt.setInt(1, id);
+            // Esecuzione query
+            ResultSet res = stmt.executeQuery();
+            
+             // ciclo sulle righe restituite
+            if(res.next()) 
+            {
+                UtentiVenditori current = new UtentiVenditori();
+                current.setId(res.getInt("id"));
+                current.setNome(res.getString("nome"));
+                current.setCognome(res.getString("cognome"));
+                current.setUsername_v(res.getString("username"));
+                current.setPassword_v(res.getString("password"));
+                
+                // Corsi assegnati 
+               
+                query =  "select oggetti.id, oggetti.nomeprodotto from oggetti "
+                        + "join venditori "
+                        + "on venditori.id = oggetti.idvenditore "
+                        + "where oggetti.idvenditore="+current.getId();
+                Statement st = conn.createStatement();
+                ResultSet res2 = st.executeQuery(query);
+                while(res2.next())
+                {
+                    Oggetti o = new Oggetti();
+                    o.setId(res2.getInt("id"));
+                    o.setNomeProdotto(res2.getString("nomeprodotto"));
+                    current.oggettiInseriti.add(o);
+                }           
+                
+                st.close();
+                stmt.close();
+                conn.close();
+                return current;
+            }   
+            stmt.close();
+            conn.close();
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+        
+    public String getConnectionString(){
+        return this.connectionString;
+    }
+   
+  
+    
+    
     
     
     

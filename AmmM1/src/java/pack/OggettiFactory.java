@@ -4,85 +4,206 @@
  * and open the template in the editor.
  */
 package pack;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class OggettiFactory {
     
      // Attributi
     private static OggettiFactory singleton;
+    private String connectionString;
     public static OggettiFactory getInstance() {
         if (singleton == null) {
             singleton = new OggettiFactory();
         }
         return singleton;
     }
-    // Lista Oggetti
-    private ArrayList<Oggetti> listaOggetti = new ArrayList<Oggetti>();
     
-    
-     private OggettiFactory() {
+    private OggettiFactory() {
               
-    
-     // Oggetti         
-        Oggetti oggetti_1 = new Oggetti();
-        oggetti_1.setNomeProdotto("iphone");
-        oggetti_1.setPrezzo(729);
-        oggetti_1.setQuantita(2);
-        ArrayList<Oggetti> arrayOggettiCliente_1 = new ArrayList<Oggetti>();
-        arrayOggettiCliente_1.add(oggetti_1);
-        listaOggetti.add(oggetti_1);
-        
-        Oggetti oggetti_2 = new Oggetti();
-        oggetti_2.setNomeProdotto("samsung");
-        oggetti_2.setPrezzo(699,99);
-        oggetti_2.setQuantita(1);
-        ArrayList<Oggetti> arrayOggettiCliente_2 = new ArrayList<Oggetti>();
-        arrayOggettiCliente_2.add(oggetti_2);
-        listaOggetti.add(oggetti_2);
-        
-        Oggetti oggetti_3 = new Oggetti();
-        oggetti_3.setNomeProdotto("huawei");
-        oggetti_3.setPrezzo(599,99);
-        oggetti_3.setQuantita(3);
-        ArrayList<Oggetti> arrayOggettiCliente_3 = new ArrayList<Oggetti>();
-        arrayOggettiCliente_3.add(oggetti_3);
-        listaOggetti.add(oggetti_3);
-        
-        Oggetti oggetti_4 = new Oggetti();
-        oggetti_4.setNomeProdotto("microsoft");
-        oggetti_4.setPrezzo(549,99);
-        oggetti_4.setQuantita(1);
-        ArrayList<Oggetti> arrayOggettiCliente_4 = new ArrayList<Oggetti>();
-        arrayOggettiCliente_1.add(oggetti_1);
-        listaOggetti.add(oggetti_4);
-        
-        Oggetti oggetti_5 = new Oggetti();
-        oggetti_5.setNomeProdotto("sony");
-        oggetti_2.setPrezzo(569);
-        oggetti_2.setQuantita(2);
-        ArrayList<Oggetti> arrayOggettiCliente_5 = new ArrayList<Oggetti>();
-        arrayOggettiCliente_1.add(oggetti_1);
-        listaOggetti.add(oggetti_5);
      }
-    
      
-     public Oggetti getObjectSaleById(int id)
+    public Oggetti getNewObject()
     {
-        for(Oggetti u : listaOggetti)
-        {
-            if(u.getId() == id)
-                return u;
-        }
+        try {
+                Connection conn = DriverManager.getConnection(connectionString, "valentinamelis", "valentinamelis");
+               
+               
+                
+                String sql = "insert into oggetti (id,nomeprodotto , urlfoto,quantita,prezzo) "
+                + "values (default,?,?,?,?)";
+                
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                
+                int rows = stmt.executeUpdate(sql);
+                if(rows == 1){
+                System.out.println("Insert ok!");
+                }
+                
+                stmt.close();
+                conn.close();
+                } catch (SQLException ex) {
+                
+                Logger.getLogger(Oggetti.class.getName()).log(Level.SEVERE, null, ex);
+                } 
         
         return null;
     }
-     
-     
-     
-     public ArrayList<Oggetti> getSellingObjectList()
+    
+    
+   public ArrayList<Oggetti> getUpdate()
     {
+        ArrayList<Oggetti> listaOggetti = new ArrayList<Oggetti>();
+        try 
+        {
+         
+            Connection conn = DriverManager.getConnection(connectionString, "valentinamelis", "valentinamelis");
+               
+                
+                String sql = "UPDATE oggetti SET" +
+                                "nomeprodotto = ?, urlfoto = ?,quantita=?,prezzo=?" +
+                                "WHERE id = ? ";
+                
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                
+                int rows = stmt.executeUpdate(sql);
+                if(rows == 1){
+                System.out.println("Update ok!");
+                }
+                
+                stmt.close();
+                conn.close();
+                } catch (SQLException ex) {
+                
+                Logger.getLogger(Oggetti.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } 
+        
         return listaOggetti;
     }
-     
+   
+   
+   public ArrayList<Oggetti> getDelete()
+    {
+        ArrayList<Oggetti> listaOggetti = new ArrayList<Oggetti>();
+        try 
+        {
+         
+            Connection conn = DriverManager.getConnection(connectionString, "valentinamelis", "valentinamelis");
+               
+                
+                String sql = "delete from oggetti" +
+                              "WHERE id = ? ";
+                
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                
+                int rows = stmt.executeUpdate(sql);
+                if(rows == 1){
+                System.out.println("Delete ok!");
+                }
+                
+                stmt.close();
+                conn.close();
+                } catch (SQLException ex) {
+                
+                Logger.getLogger(Oggetti.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } 
+        
+        return listaOggetti;
+    }
+   
+   
+   public void compravenditaOggetto(int idOggetto,int idVenditore,
+            int conto) throws SQLException
+    {
+        Connection conn = DriverManager.getConnection(
+                OggettiFactory.getInstance().getConnectionString(),
+                "valentinamelis",
+                "valentinamelis");
+        
+        PreparedStatement updateOggetti = null;
+        PreparedStatement updateCreditoCliente = null;
+        PreparedStatement updateCreditoVenditore = null;
+        
+        // Sql 
+        String deleteOggetti = "delete from oggetti "
+                + "where idvenditore = ? ";
+        String updateCredito = "update saldo set "
+                + "conto=(saldo.conto-oggetti.prezzo)where saldo.id=clienti.id and "
+                + "clienti.id=oggetto.idcliente=?";
+        
+        String updateCredvenditore = "update saldo set "
+                + "conto=(saldo.conto+oggetti.prezzo) where saldo.id=venditori.id and "
+                + "venditori.id=oggetto.idvenditore=?";
+
+        try
+        {
+           conn.setAutoCommit(false);
+           updateOggetti = conn.
+                   prepareStatement(deleteOggetti);
+           updateCreditoCliente = conn.
+                   prepareStatement(updateCredito);
+            updateCreditoVenditore = conn.
+                   prepareStatement(updateCredvenditore);
+           
+           
+           updateOggetti.setInt(1, idVenditore);
+           updateOggetti.setInt(2, idOggetto);
+           
+           updateCreditoCliente.setInt(1, idOggetto);
+           updateCreditoCliente.setInt(2, conto);
+           
+           updateCreditoVenditore.setInt(1, idOggetto);
+           updateCreditoVenditore.setInt(2, conto);
+           
+           int c1 = updateOggetti.executeUpdate();
+           int c2 = updateCreditoCliente.executeUpdate();
+           int c3 = updateCreditoVenditore.executeUpdate();
+           
+           if(c1 != 1 || c2 != 1 || c3 != 1)
+               conn.rollback();
+           
+           conn.commit();           
+        }catch(SQLException e)
+        {
+            try
+            {
+                conn.rollback();
+            }catch(SQLException e2)
+            {
+                
+            }
+        }
+        finally
+        {
+            if(updateOggetti != null)
+                updateOggetti.close();
+            if(updateCreditoCliente != null)
+                updateCreditoCliente.close();
+            if(updateCreditoVenditore != null)
+                updateCreditoVenditore.close();
+            
+            conn.setAutoCommit(true);
+            conn.close();
+        }    
+    }
+            
+   
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+        
+    public String getConnectionString(){
+        return this.connectionString;
+    }
     
     
 }

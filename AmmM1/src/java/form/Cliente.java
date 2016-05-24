@@ -7,6 +7,10 @@ package form;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +23,7 @@ import pack.OggettiFactory;
 import pack.UtentiClienti;
 import pack.UtentiClientiFactory;
 import pack.UtentiVenditori;
+import pack.UtentiVenditoriFactory;
 
 
 @WebServlet(name = "Cliente", urlPatterns = {"/Cliente"})
@@ -38,32 +43,35 @@ public class Cliente extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         
-        HttpSession session=request.getSession(false);
+        HttpSession session=request.getSession();
         
-         ArrayList<UtentiClienti> listaClienti = UtentiClientiFactory.getInstance().getUserList();
-         
-         for(UtentiClienti u : listaClienti)
-       {
+        int id = Integer.parseInt(request.getParameter("OggettoId"));
+        request.setAttribute("cliente", UtentiClientiFactory.getInstance().getUtentiClienti(id));
+        request.setAttribute("venditore", UtentiVenditoriFactory.getInstance().getUtentiVenditori(id));
+       
         
-        if(session.getAttribute("loggedIn").equals(true)){
-            ArrayList<Oggetti> listaOggetti = OggettiFactory.getInstance().getSellingObjectList();
-        }
-       }
+        // Rimuove l'oggetto solo se l'utente ha premuto il tasto 'submit'
+        if(request.getParameter("submit") != null)
+        {
+           
+            
+           // int idOggetto = OggettiFactory.getInstance().getUtentiVenditori(request.getParameter("listaOggetti")).getId();
+            int idOggetto =Integer.parseInt(request.getParameter("id"));
+            //int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+            int idVenditore = Integer.parseInt(request.getParameter("idVenditore"));
+            int conto = Integer.parseInt(request.getParameter("conto"));
+           
+            
+            try
+            {
+                
+                OggettiFactory.getInstance().compravenditaOggetto(idOggetto,idVenditore,
+                        conto);
+            }catch(SQLException e)
+            {}
+        }              
         
-         if(session.getAttribute("isLogged").equals(false)){
-               request.getRequestDispatcher("errore.jsp").forward(request,response);
-           }
-         
-          if(request.getParameter("submit")!=null)
-                {
-                 
-               String saldo=request.getParameter("saldo");
-                request.getRequestDispatcher("acquistato.jsp").forward(request,response);
-                }else{   
-                       request.getRequestDispatcher("errore_acquisto.jsp").forward(request,response);
-              
-                     }
-         
+        request.getRequestDispatcher("clienti.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -104,5 +112,6 @@ public class Cliente extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+   
 }

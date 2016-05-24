@@ -1,0 +1,31 @@
+Tue May 24 16:59:46 CEST 2016 : Server di rete Apache Derby: 10.11.1.2 - (1629631) avviato e pronto ad accettare connessioni sulla porta 1527
+----------------------------------------------------------------
+Tue May 24 16:59:49 CEST 2016:
+Avvio della versione di Derby The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): istanza a816c00e-0154-e347-604c-ffffd8c879eb
+sulla directory di database C:\Users\kira8_000\Documents\NetBeansProjects\amm\AmmM1\web\WEB-INF\db\ammdb con caricatore classi sun.misc.Launcher$AppClassLoader@5e2de80c 
+Caricato da file:/C:/Program%20Files/Java/jdk1.8.0_73/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_73-b02
+user.dir=C:\Program Files\Java\jdk1.8.0_73\db
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\kira8_000\Documents\NetBeansProjects\amm\AmmM1\web\WEB-INF\db
+Programma di caricamento classe database avviato - derby.database.classpath=''
+----------------------------------------------------------------
+Tue May 24 17:00:00 CEST 2016:
+Arresto dell'istanza a816c00e-0154-e347-604c-ffffd8c879eb nella directory del database C:\Users\kira8_000\Documents\NetBeansProjects\amm\AmmM1\web\WEB-INF\db\ammdb con il caricatore di classi sun.misc.Launcher$AppClassLoader@5e2de80c 
+Tue May 24 17:00:00 CEST 2016 Thread[DRDAConnThread_3,5,main] (DATABASE = ammdb), (DRDAID = {2}), Chiusura del database 'ammdb'.
+----------------------------------------------------------------
+Tue May 24 17:00:05 CEST 2016:
+Avvio della versione di Derby The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): istanza a65c80ac-0154-e347-604c-ffffd8c879eb
+sulla directory di database C:\Users\kira8_000\Documents\NetBeansProjects\amm\AmmM1\web\WEB-INF\db\ammdb con caricatore classi sun.misc.Launcher$AppClassLoader@5e2de80c 
+Caricato da file:/C:/Program%20Files/Java/jdk1.8.0_73/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_73-b02
+user.dir=C:\Program Files\Java\jdk1.8.0_73\db
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\kira8_000\Documents\NetBeansProjects\amm\AmmM1\web\WEB-INF\db
+Programma di caricamento classe database avviato - derby.database.classpath=''

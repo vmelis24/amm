@@ -17,14 +17,22 @@ public class SaldoFactory {
         return singleton;
     
 }
-   
+     private String connectionString;
+    
+    public void setConnectionString(String s){
+	this.connectionString = s;
+    }
+        
+    public String getConnectionString(){
+        return this.connectionString;
+    }
     
     private SaldoFactory(){
-        Saldo saldo_1 = new Saldo();
-        saldo_1.setSaldo(100);
+        Saldo conto_1 = new Saldo();
+        conto_1.setSaldo(100);
         
-        Saldo saldo_2 = new Saldo();
-        saldo_2.setSaldo(50);
+        Saldo conto_2 = new Saldo();
+        conto_2.setSaldo(50);
         
     }
     

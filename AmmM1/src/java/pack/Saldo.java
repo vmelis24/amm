@@ -9,7 +9,7 @@ package pack;
 public class Saldo extends UtentiClienti {
     
      private int id;
-    private int saldo;
+    private int conto;
 
     /**
      * @return the id
@@ -29,14 +29,14 @@ public class Saldo extends UtentiClienti {
      * @return the saldo
      */
     public int getSaldo() {
-        return saldo;
+        return conto;
     }
 
     /**
      * @param saldo the saldo to set
      */
     public void setSaldo(int saldo) {
-        this.saldo = saldo;
+        this.conto = saldo;
     }
     
 }

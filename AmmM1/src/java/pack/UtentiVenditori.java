@@ -5,16 +5,19 @@
  */
 package pack;
 
+import java.util.ArrayList;
+
 public class UtentiVenditori {
     
     
-      protected int id;
+    protected int id;
     protected String nome;
     protected String cognome;
     
-    protected String username;
-    protected String password;
+    protected String username_v;
+    protected String password_v;
     
+    protected ArrayList<Oggetti> oggettiInseriti = new ArrayList<Oggetti>(); 
     
     /* Costruttore */
     public UtentiVenditori()
@@ -22,10 +25,10 @@ public class UtentiVenditori {
         id = 0;
         nome = "";
         cognome = "";
-        username="";
-        password="";
+        username_v="";
+        password_v="";
     }
-    
+
     /**
      * @return the id
      */
@@ -69,32 +72,34 @@ public class UtentiVenditori {
     }
 
     /**
-     * @return the username
+     * @return the username_v
      */
-    public String getUsername() {
-        return username;
+    public String getUsername_v() {
+        return username_v;
     }
 
     /**
-     * @param username the username to set
+     * @param username_v the username_v to set
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername_v(String username_v) {
+        this.username_v = username_v;
     }
 
     /**
-     * @return the password
+     * @return the password_v
      */
-    public String getPassword() {
-        return password;
+    public String getPassword_v() {
+        return password_v;
     }
 
     /**
-     * @param password the password to set
+     * @param password_v the password_v to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword_v(String password_v) {
+        this.password_v = password_v;
     }
+    
+    
 }
 
 

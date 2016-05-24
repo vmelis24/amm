@@ -29,41 +29,47 @@ and open the template in the editor.
             <!--contenuto-->
             <div id="content">
         
-        
+        <h3>Bentornato,$[venditore_autenticato.nome]$[venditore_autenticato.cognome]</h3>
         
         <h1>Inserisci un nuovo prodotto</h1>
         
         <form method="POST" action="Venditore">
             
-             <input type="hidden" name="venditore" value="Venditore">
+             <div>
+                ${venditore.nome} ${venditore.cognome}                 
+                <input type="hidden" name="id" id="id" value="${venditore.id}"/>   
+            </div>
+            
+            
              <!-- inserimento nome prodotto, url immagine del prodotto,descrizione
              prezzo e quantità-->
              
             <label for="NomeProdotto">Nome del prodotto</label>
-            <input type="text" name="NomeProdotto" id="NomeProdotto" value="nome prodotto">
+            <input type="text" name="nomeprodotto" id="NomeProdotto" value="nome prodotto">
             
 
             <div>
             <label for="UrlProdotto">URL dell'immagine del prodotto</label>
-            <input type="text" name="UrlProdotto" id="UrlProdotto" value="inserisci la url">
+            <input type="text" name="urlprodotto" id="UrlProdotto" value="inserisci la url">
             </div>
 
              
             <label for="Descrizione">Descrizione prodotto</label>
-            <textarea name="Descrizione" id="Descrizione" cols="21" rows="5">Descrizone prodotto</textarea>
+            <textarea name="descrizione" id="Descrizione" cols="21" rows="5">Descrizone prodotto</textarea>
            
              
             <label for="Prezzo">Prezzo</label>
-            <input type="number" name="Prezzo" step="any" id="Prezzo" >
+            <input type="number" name="prezzo" step="any" id="Prezzo" >
            
 
             
             <label for="Quantita">Quantit&agrave; prodotti disponibili</label>
-            <input type="number" name="Quantita" id="Quantita" >
+            <input type="number" name="quantita" id="Quantita" >
              
             <div>
-                <input class="pulsante" type="submit" value="Invia">
-                <input class="pulsante" type="reset" value="Cancella">
+                <input class="pulsante" type="submit" name="submit" value="Invia">
+                <input class="pulsante" type="submit" name="modifica" value="Modifica">
+                <input class="pulsante" type="reset" name="cancella" value="Cancella">
             </div>
             
         </form>

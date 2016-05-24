@@ -5,15 +5,18 @@
  */
 package pack;
 
+import java.util.ArrayList;
 
 public class UtentiClienti {
   
-     protected int id;
+    protected int id;
     protected String nome;
     protected String cognome;
     
-    protected String username;
-    protected String password;
+    protected String username_c;
+    protected String password_c;
+    
+    protected ArrayList<Oggetti> oggettiAcquistati = new ArrayList<Oggetti>(); 
     
     
     /* Costruttore */
@@ -22,10 +25,10 @@ public class UtentiClienti {
         id = 0;
         nome = "";
         cognome = "";
-        username="";
-        password="";
+        username_c="";
+        password_c="";
     }
-    
+
     /**
      * @return the id
      */
@@ -69,31 +72,48 @@ public class UtentiClienti {
     }
 
     /**
-     * @return the username
+     * @return the username_c
      */
-    public String getUsername() {
-        return username;
+    public String getUsername_c() {
+        return username_c;
     }
 
     /**
-     * @param username the username to set
+     * @param username_c the username_c to set
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername_c(String username_c) {
+        this.username_c = username_c;
     }
 
     /**
-     * @return the password
+     * @return the password_c
      */
-    public String getPassword() {
-        return password;
+    public String getPassword_c() {
+        return password_c;
     }
 
     /**
-     * @param password the password to set
+     * @param password_c the password_c to set
      */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword_c(String password_c) {
+        this.password_c = password_c;
     }
+
+    /**
+     * @return the oggettiAcquistati
+     */
+    public ArrayList<Oggetti> getOggettiAcquistati() {
+        return oggettiAcquistati;
+    }
+
+    /**
+     * @param oggettiAcquistati the oggettiAcquistati to set
+     */
+    public void setOggettiAcquistati(ArrayList<Oggetti> oggettiAcquistati) {
+        this.oggettiAcquistati = oggettiAcquistati;
+    }
+    
+   
+    
 }
 

@@ -12,4 +12,3 @@
         </json:object>
     </c:forEach>
 </json:array>
-        

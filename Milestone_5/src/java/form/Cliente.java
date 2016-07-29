@@ -21,12 +21,11 @@ import javax.servlet.http.HttpSession;
 import pack.Oggetti;
 import pack.OggettiFactory;
 import pack.UtentiClienti;
-import pack.UtentiClientiFactory;
+import pack.UtentiFactory;
 import pack.UtentiVenditori;
-import pack.UtentiVenditoriFactory;
 
 
-@WebServlet(name = "Cliente", urlPatterns = {"/Cliente"})
+@WebServlet(name = "Cliente", urlPatterns = {"/cliente.html"})
 public class Cliente extends HttpServlet {
 
     /**
@@ -45,10 +44,10 @@ public class Cliente extends HttpServlet {
         
         HttpSession session=request.getSession();
         
-        int id = Integer.parseInt(request.getParameter("OggettoId"));
-        request.setAttribute("cliente", UtentiClientiFactory.getInstance().getUtentiClienti(id));
-        request.setAttribute("venditore", UtentiVenditoriFactory.getInstance().getUtentiVenditori(id));
-       
+       int id = Integer.parseInt(request.getParameter("OggettoId"));
+         request.setAttribute("oggetti", OggettiFactory.getInstance().getOggettiId(id));
+        request.setAttribute("cliente", UtentiFactory.getInstance().getUtentiClienti((int)session.getAttribute("id")));
+        
         
         // Rimuove l'oggetto solo se l'utente ha premuto il tasto 'submit'
         if(request.getParameter("submit") != null)

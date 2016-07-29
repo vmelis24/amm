@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -30,28 +29,10 @@ and open the template in the editor.
             <!--contenuto-->
             <div id="content">
         
-        <h2>Login</h2>
-        <form method="post" action="Login">
-        <input type="hidden" name="cmd" value="Login">
-          
-            <div>
-            <label for="Username">Username</label>
-            <input type="text" name="Username" id="Username" >
-            </div>
-            
-            
-            <label for="pw">Password</label>
-            <input  type="password" name="Password" id="pw" value="oscurato">
-            
-           
-            
-            <div>
-                <input class="pulsante" type="submit" value="Invia">
-                <input class="pulsante" type="reset" value="Cancella">
-            </div>
-           
-           
-             </form>
+        <h2>Inserimento effettuato con successo</h2>
+        
+        
+        
           
            
             </div>

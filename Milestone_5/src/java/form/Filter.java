@@ -13,11 +13,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pack.Oggetti;
 import pack.OggettiFactory;
 
 
-@WebServlet(name = "Filter", urlPatterns = {"/Filter"})
+@WebServlet(name = "Filter", urlPatterns = {"/filter.json"})
 public class Filter extends HttpServlet {
 
     /**
@@ -31,12 +32,19 @@ public class Filter extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session=request.getSession();
+        
+         if(session.getAttribute("isLogged").equals(false)){
+                request.getRequestDispatcher("errore.jsp").forward(request,response);
+                    } 
      
     String command = request.getParameter("cmd");
         if (command != null) 
         {
             if (command.equals("search")) 
             {
+                
                 
                 
                 ArrayList<Oggetti> listaOggetti = OggettiFactory.getInstance()
@@ -54,6 +62,8 @@ public class Filter extends HttpServlet {
                         forward(request, response);
             }
         }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

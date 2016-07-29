@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import pack.OggettiFactory;
+import pack.Utenti;
 import pack.UtentiClienti;
-import pack.UtentiClientiFactory;
+import pack.UtentiFactory;
 import pack.UtentiVenditori;
-import pack.UtentiVenditoriFactory;
 
 
-@WebServlet(name = "Login", urlPatterns = {"/Login"}, loadOnStartup = 0)
+@WebServlet(name = "Login", urlPatterns = {"/login.html"}, loadOnStartup = 0)
 public class Login extends HttpServlet {
 
     /**
@@ -58,47 +58,43 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
        
         HttpSession session=request.getSession(true);
+       
         if(request.getParameter("submit")!=null)
                 {
-                 
-                String username_c=request.getParameter("Username_c");
-                String password_c=request.getParameter("Password_c");
-                String username_v=request.getParameter("Username_v");
-                String password_v=request.getParameter("Password_v");
-                
-                
-                
-                
-             UtentiClienti c = UtentiClientiFactory.getInstance().getUtentiClienti(username_c, password_c);
-            if(c != null)
+                String username = request.getParameter("Username");
+                String password = request.getParameter("Password");
+               
+            Utenti u = UtentiFactory.getInstance().getUtente(username, password);
+            if(u != null)
             {
-                session.setAttribute("loggedIn",true);
-                session.setAttribute("id",c.getId());
+                session.setAttribute("loggedIn", true);
+                session.setAttribute("id", u.getId());
                     
-                    request.setAttribute("cliente_autenticato",c);
-                    request.getRequestDispatcher("cliente.jsp").forward(request,response);              
-            }
-                  
-               
-             UtentiVenditori v = UtentiVenditoriFactory.getInstance().getUtentiVenditori(username_v, password_v);    
-                    
-                    if(v!=null){
-                        
-                            session.setAttribute("loggedIn",true);
-                            session.setAttribute("id",v.getId());
-
-                            request.setAttribute("venditore_autenticato",v);
-                            request.getRequestDispatcher("venditore.jsp").forward(request,response);  
-                
-                    }
-               
-                
-                 if(session.getAttribute("isLogged").equals(false)){
-                        request.getRequestDispatcher("errore.jsp").forward(request,response);
-                    }     
-                
+                if(u instanceof UtentiClienti) 
+                {
+                    request.setAttribute("cliente", u);
+                    request.setAttribute("listaOggetti", OggettiFactory.getInstance().getOggetti());
+                    request.getRequestDispatcher("cliente.jsp").forward(request, response);
                 }
-      
+                else
+                {
+                    request.setAttribute("venditore", u);
+                    request.setAttribute("listaOggetti", OggettiFactory.getInstance().getOggetti());
+                    request.getRequestDispatcher("venditore.jsp").forward(request, response);  
+                }                    
+            }
+        }
+        
+        request.getRequestDispatcher("login.jsp").forward(request, response);
+        
+        
+        
+        if(session.getAttribute("isLogged").equals(false)){
+                request.getRequestDispatcher("errore.jsp").forward(request,response);
+                    }     
+ 
+            
+    
         
         
     }

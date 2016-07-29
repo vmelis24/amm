@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -20,15 +19,54 @@ and open the template in the editor.
         
         <div id="page">
         
-            <jsp:include page="header.jsp" />
+            <header>
+                
+                <div id="header">
+                
+                    
+                    <div id="logo">
+                        <img src="img/logo1.png" title="logo" alt="logo">
+                    </div>
+                
+                    
+                    <div id="menu"> 
+                    
+                    <ul id="menu1">
+                    <li ><a href="descrizione.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cliente.html">Prodotti</a></li>
+                    <li><a href="venditore.html">Aggiungi</a></li>
+                    
+                </ul>
+                        
+                        
+                </div>
+                
+                </div>
+            </header>
             
-             <jsp:include page="sidebar.jsp" />
+            
+            <div id="sidebar">
+                
+                <h2>Navigazione</h2>
+                        <ul>
+                           <li><a href="descrizione.html">Home</a></li>
+                             <li><a href="login.html">Login</a></li>
+                              <li><a href="cliente.html">Visualizza i prodotti</a></li>
+                    <li><a href="venditore.html">Aggiungi prodotto</a></li>
+                        </ul>
+                
+                
+                
+            </div>
+            
+            
             
             <!--contenuto-->
             <div id="content">
         <h1>Prodotti disponibili</h1>
         <!-- tabella contenente i prodotti disponibili nel catalogo --> 
-        <h3>Bentornato,$[cliente_autenticato.nome]$[cliente_autenticato.cognome]</h3>
+        
         <table>
             <tr class="intestazione">
                 <th>Nome</th>
@@ -44,7 +82,7 @@ and open the template in the editor.
                 <td><img src="img/iphone.jpg" class="foto" title="iphone" alt="iphone 6s"></td>
                 <td class="pezzi">2 </td>
                 <td>€ 729</td>
-                <td class="carrello"><a href="Cliente?id=${cliente.id}"/>Aggiugni al carrello</a></td>
+                <td class="carrello"><a href="cliente.html">Aggiugni al carrello</a></td>
             
             </tr>
             
@@ -53,7 +91,7 @@ and open the template in the editor.
                 <td><img src="img/s6.jpg" class="foto" title="samsung s6" alt="samsung s6" ></td>
                 <td class="pezzi">1</td>
                 <td>€ 699</td>
-                <td class="carrello"><a href="Cliente?id=${cliente.id}"/>Aggiugni al carrello</a></td>
+                <td class="carrello"><a href="cliente.html">Aggiugni al carrello</a></td>
             
             </tr>
             
@@ -64,7 +102,7 @@ and open the template in the editor.
                 <td><img src="img/huawei.jpg" class="foto" title="huawei mate" alt="huawei mate" ></td>
                 <td class="pezzi">3</td>
                 <td>€ 599</td>
-                <td class="carrello"><a href="Cliente?id=${cliente.id}"/>Aggiugni al carrello</a></td>
+                <td class="carrello"><a href="cliente.html">Aggiugni al carrello</a></td>
             
             </tr>
             
@@ -75,7 +113,7 @@ and open the template in the editor.
                 <td><img src="img/microsoft.jpg" class="foto" title="microsoft lumia" alt="microsoft lumia"></td>
                 <td class="pezzi">1</td>
                 <td>€ 549</td>
-                <td class="carrello"><a href="Cliente?id=${cliente.id}"/>Aggiugni al carrello</a></td>
+                <td class="carrello"><a href="cliente.html">Aggiugni al carrello</a></td>
             
             </tr>
             
@@ -86,7 +124,7 @@ and open the template in the editor.
                 <td><img src="img/sony.jpg" class="foto" title="sony xperia" alt="sony xperia"></td>
                 <td class="pezzi">2</td>
                 <td>€ 569</td>
-                <td class="carrello"><a href="Cliente?id=${cliente.id}"/>Aggiugni al carrello</a></td>
+                <td class="carrello"><a href="cliente.html">Aggiugni al carrello</a></td>
             
             </tr>
             
@@ -96,7 +134,23 @@ and open the template in the editor.
             </div>
             
             
-              <jsp:include page="footer.jsp" />
+             <div style="clear: both; width: 0px; height: 0px;"></div>
+        <footer>
+           
+                 <div class="social_footer">
+                     <p id="social">Seguici su:</p>
+                     <ul>
+                        <li id="facebook"><a href="www.facebook.com"></a></li>
+                        <li id="twitter"><a href="www.twitter.com/"></a></li>
+                        <li id="google"><a href="www.google.com/"></a></li>
+                        <li id="youtube"><a href="www.twitter.com/"></a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            
+        </footer>   
         
         </div>
     </body>

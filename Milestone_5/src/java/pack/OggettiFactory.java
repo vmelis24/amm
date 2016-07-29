@@ -29,6 +29,82 @@ public class OggettiFactory {
               
      }
      
+    
+    public ArrayList<Oggetti> getOggetti()
+    {
+        ArrayList<Oggetti> listaOggetti = new ArrayList<Oggetti>();
+        try 
+        {
+            
+            Connection conn = DriverManager.getConnection(connectionString, "valentinamelis", "valentinamelis");
+            Statement stmt = conn.createStatement();
+            String query = "select * from oggetti";
+            ResultSet set = stmt.executeQuery(query);
+            
+             // ciclo sulle righe restituite
+            while(set.next()) 
+            {
+                Oggetti current = new Oggetti();
+                current.setId(set.getInt("id"));
+                current.setNomeProdotto(set.getString("nomeprodotto"));
+                current.setUrlProdotto(set.getString("urlfoto"));
+                current.setDescrizione(set.getString("descrizione"));
+                current.setPrezzo(set.getInt("prezzo"));
+                current.setQuantita(set.getInt("quantita"));
+                listaOggetti.add(current);
+            }     
+            
+            stmt.close();
+            conn.close();
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return listaOggetti;
+    }
+    
+    public Oggetti getOggettiId(int id)
+    {
+        try 
+        {
+            
+            Connection conn = DriverManager.getConnection(connectionString, "valentinamelis", "valentinamelis");
+            String query = "select * from oggetti "
+            + "where id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(query);
+            
+            stmt.setInt(1, id);
+           
+            ResultSet res = stmt.executeQuery();
+           
+             
+            if(res.next()) 
+            {
+                Oggetti current = new Oggetti();
+                current.setId(res.getInt("id"));
+                current.setNomeProdotto(res.getString("nomeprodotto"));
+                current.setUrlProdotto(res.getString("urlfoto"));
+                current.setDescrizione(res.getString("descrizione"));
+                current.setPrezzo(res.getInt("prezzo"));
+                current.setQuantita(res.getInt("quantita"));
+                
+                stmt.close();
+                conn.close();
+                return current;
+            }
+            
+            stmt.close();
+            conn.close();
+        } 
+        catch (SQLException e) 
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public Oggetti getNewObject()
     {
         try {
@@ -36,8 +112,8 @@ public class OggettiFactory {
                
                
                 
-                String sql = "insert into oggetti (id,nomeprodotto , urlfoto,quantita,prezzo) "
-                + "values (default,?,?,?,?)";
+                String sql = "insert into oggetti (id,nomeprodotto , urlfoto,descrizione,prezzo,quantita) "
+                + "values (default,?,?,?,?,?)";
                 
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 
@@ -119,9 +195,7 @@ public class OggettiFactory {
         return listaOggetti;
     }
    
-   
-   
-     // Restituisce la lista di tutti gli oggetti il cui nome e cognome contiene la stringa in input
+    // Restituisce la lista di tutti gli oggetti il cui nome e cognome contiene la stringa in input
     public ArrayList<Oggetti> getOggetti(String text)
     {
         ArrayList<Oggetti> lista = new ArrayList<Oggetti>();
@@ -156,8 +230,6 @@ public class OggettiFactory {
         
         return lista;
     }
-   
-   
    
    
    public void compravenditaOggetto(int idOggetto,int idVenditore,

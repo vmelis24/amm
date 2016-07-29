@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Inserimento nuovo prodotto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="prodotto,url,prezzo">
+        <meta name="description" content="inserimento nuovi prodotti">
+        <link href="css/style_css.css" rel="stylesheet" type="text/css" media="screen">
+    </head>
+    <body>
+        
+         <div id="page">
+        
+            <header>
+                
+                <div id="header">
+                
+                    
+                    <div id="logo">
+                        <img src="img/logo1.png" title="logo" alt="logo">
+                    </div>
+                
+                    
+                    <div id="menu"> 
+                    
+                    <ul id="menu1">
+                    <li ><a href="descrizione.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cliente.html">Prodotti</a></li>
+                    <li><a href="venditore.html">Aggiungi</a></li>
+                    
+                </ul>
+                        
+                        
+                </div>
+                
+                </div>
+            </header>
+            
+            
+             <div id="sidebar">
+                
+                <h2>Navigazione</h2>
+                        <ul>
+                           <li><a href="descrizione.html">Home</a></li>
+                             <li><a href="login.html">Login</a></li>
+                              <li><a href="cliente.html">Visualizza i prodotti</a></li>
+                    <li><a href="venditore.html">Aggiungi prodotto</a></li>
+                        </ul>
+                
+                
+                
+            </div>
+            
+            
+            
+            <!--contenuto-->
+            <div id="content">
+        
+        
+        
+        <h1>Inserisci un nuovo prodotto</h1>
+        
+         <form action="Venditore" method="GET">
+             <!-- inserimento nome prodotto, url immagine del prodotto,descrizione
+             prezzo e quantità-->
+             
+            <label for="NomeProdotto">Nome del prodotto</label>
+            <input type="text" name="NomeProdotto" id="NomeProdotto" value="nome prodotto">
+            
+
+            <div>
+            <label for="UrlProdotto">URL dell'immagine del prodotto</label>
+            <input type="text" name="UrlProdotto" id="UrlProdotto" value="inserisci la url">
+            </div>
+
+             
+            <label for="Descrizione">Descrizione prodotto</label>
+            <textarea name="Descrizione" id="Descrizione" cols="18" rows="4">Descrizone</textarea>
+           
+             
+            <label for="Prezzo">Prezzo</label>
+            <input type="number" name="Prezzo" step="any" id="Prezzo" >
+           
+
+            
+            <label for="Quantita">Quantità prodotti </label>
+            <input type="number" name="Quantita" id="Quantita" >
+             
+            <div>
+                <input class="pulsante" type="submit" value="Invia">
+                <input class="pulsante" type="reset" value="Cancella">
+            </div>
+            
+        </form>
+
+        
+            </div>
+            
+            
+             
+             <div style="clear: both; width: 0px; height: 0px;"></div>
+        <footer>
+           
+                 <div class="social_footer">
+                     <p id="social">Seguici su:</p>
+                     <ul>
+                        <li id="facebook"><a href="www.facebook.com"></a></li>
+                        <li id="twitter"><a href="www.twitter.com/"></a></li>
+                        <li id="google"><a href="www.google.com/"></a></li>
+                        <li id="youtube"><a href="www.twitter.com/"></a></li>
+                        
+                    </ul>
+                </div>
+                
+                
+            
+        </footer>   
+            
+         </div>
+        
+    </body>
+</html>

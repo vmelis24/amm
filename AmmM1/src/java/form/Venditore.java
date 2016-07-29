@@ -22,12 +22,12 @@ import javax.servlet.http.HttpSession;
 import pack.Oggetti;
 import pack.OggettiFactory;
 import pack.UtentiClienti;
-import pack.UtentiClientiFactory;
+import pack.UtentiFactory;
 import pack.UtentiVenditori;
-import pack.UtentiVenditoriFactory;
 
 
-@WebServlet(name = "venditore", urlPatterns = {"/venditore"})
+
+@WebServlet(name = "venditore", urlPatterns = {"/venditore.html"})
 public class Venditore extends HttpServlet {
 
     /**
@@ -42,19 +42,23 @@ public class Venditore extends HttpServlet {
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession(true);
+        HttpSession session = request.getSession();
+        
+        int id = Integer.parseInt(request.getParameter("OggettoId"));
+         request.setAttribute("oggetti", OggettiFactory.getInstance().getOggettiId(id));
+        request.setAttribute("venditore", UtentiFactory.getInstance().getUtentiVenditori((int)session.getAttribute("id")));
         
          if(request.getParameter("Submit") != null)
         {
             // Preleva i dati inviati
-            int id = Integer.parseInt(request.getParameter("id"));
+           
             String nomeprodotto = request.getParameter("nomeprodotto");
             String urlprodotto = request.getParameter("urlprodotto");
             String descrizione = request.getParameter("descrizione");
             int prezzo = Integer.parseInt(request.getParameter("prezzo"));
             int quantita = Integer.parseInt(request.getParameter("quantita"));
             
-            
+ 
             
          
          request.setAttribute("listaOggetti", OggettiFactory.getInstance().getNewObject());
@@ -63,7 +67,7 @@ public class Venditore extends HttpServlet {
          
           if(request.getParameter("Modifica") != null)
         {
-        int id = Integer.parseInt(request.getParameter("id"));
+        
             String nomeprodotto = request.getParameter("nomeprodotto");
             String urlprodotto = request.getParameter("urlprodotto");
             String descrizione = request.getParameter("descrizione");

@@ -10,7 +10,7 @@
         </session-timeout>
     </session-config>
      <welcome-file-list>
-        <welcome-file>descrizione.hmtl</welcome-file>   
+        <welcome-file>login.hmtl</welcome-file>   
     </welcome-file-list>   
 </web-app>
 

@@ -1,5 +1,3 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -14,7 +12,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="iphone,samsung,microsoft,huawei,sony">
         <meta name="description" content="vendita smartphone online">
-        <link href="M2/css/style_css.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/style_css.css" rel="stylesheet" type="text/css" media="screen">
   
         
     </head>
@@ -31,19 +29,22 @@ and open the template in the editor.
     
                 <h3> Riepilogo ordine: </h3>
                 
-                 ${oggetti.NomeProdotto} 
-                 ${oggetti.Prezzo}
-                 ${oggetti.Quantita}
-                    
-    
-                  <form method="post" action="cliente">
+                <form action="Cliente" method="GET">
+                        
+                        <div>
+                            <label>
+                                Codice Prodotto:${oggetti_acquistati.id} 
+                                Nome prodotto:${oggetti_acquistati.NomeProdotto} 
+                                Descrizione:${oggetti_acquistati.Descrizione}  
+                                Prezzo: ${oggetti_acquistati.Prezzo} 
+                                Quantità:${oggetti_acquistati.Quantita} 
+                            </label>
+                                                       
+                           
+                        </div>                
                  
-                 <input class="pulsante" type="submit" value="Conferma">
-                 
-                  </form>
             </div>
-            
-            
+           
               <jsp:include page="footer.jsp" />
         
         </div>

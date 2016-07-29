@@ -3,14 +3,14 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
-    Created on : 1-apr-2016, 17.16.34
-    Author     : kira8_000
-*/
+
 
 body{
   background-color: #EEE;
-  
+  font-size : 14px;
+        font-family : "open sans", arial, sans-serif;
+        color : black;
+ 
 }
 
 p{
@@ -18,14 +18,14 @@ p{
 }
 
 #page{
-    background-color: #EEE;
-    margin:0;
-    padding:0;
-    font-family: "open sans",arial,sans-serif;
-    margin:-10px;
+    background-color : #eee;
+      margin : 0;
+      padding : 0;
+      margin : -10px; 
+    
+   
 }
 
-      
           #sidebar{
     background-color: white;
      margin-left: 160px;
@@ -49,6 +49,7 @@ p{
 
 #logo{
     margin-left: 160px;
+    
 }
 
 #menu{
@@ -63,6 +64,7 @@ p{
 
 ul#menu1 {
 list-style: none;
+font-size:16px;
 margin:0 auto;
 width: 400px;}
  
@@ -85,7 +87,7 @@ width: 400px;}
 }
 
 
-input::before{
+input::after,textarea::after,label::after{
     content: '\A'; 
 }
 
@@ -147,7 +149,7 @@ td{
  }
  
  form{background:#EEE; 
-     width:470px; 
+     width:430px; 
      padding:5px;
      font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif; 
      border:1px solid #333;
@@ -171,7 +173,7 @@ td{
      }
      
      #UrlProdotto{
-         margin-left: 2px;
+         margin-left: 15px;
          margin-top: 20px;
      }
      
@@ -182,12 +184,12 @@ td{
      
      
      #Prezzo{
-         margin-left: 194px;
+         margin-left: 180px;
          margin-top: 20px;
      }
      
      #Quantita{
-         margin-left: 25px;
+         margin-left: 108px;
          margin-top: 20px;
      }
      
@@ -204,7 +206,7 @@ td{
       
       .pulsante{
         
-         margin:5px;
+         margin-left:5px;margin-right:5px; margin-bottom:5px;
          background:#A9A9A9 ; 
          color:#fff;
          text-transform:uppercase; 
@@ -289,7 +291,7 @@ td{
    
 
 footer{
-        padding: 5px;
+        padding-left: 5px; padding-right: 5px; padding-bottom: 5px;
         padding-top: 0px;
         min-height: 20px;
         position: relative;
@@ -317,9 +319,9 @@ footer{
 }
 
 #content{
-    background-color: white;
     
-    height:1220px;
+    
+    
     margin-left: 410px;
     position:absolute;
     padding-top: 20px;
@@ -340,8 +342,9 @@ footer{
 }
 
 #menu{ 
-   height: 50px;
-  margin: 0px;
+   
+  margin-left: 5px;
+  margin-right: 5px;
 
  
 }
@@ -359,23 +362,23 @@ footer{
 
       .social_footer ul li{
         display: inline-block;
-        overflow: hidden;
+        /*overflow: hidden;*/
      }
       
       #facebook{
-          height:20px;
-          width: 20px;
+          height:30px;
+          width: 30px;
       }
 
     #twitter,#google,#youtube{
-         width: 20px;
-        height: 20px;
+         width: 30px;
+        height: 30px;
         margin-left: 20px;
     }
     
     #social{
-        text-align: right;
-        color:white;
+        
+       color:white;
         font-weight: bold;
     }
 
@@ -383,7 +386,7 @@ footer{
    
 
 footer{
-        padding: 5px;
+        padding-left: 5px;padding-right: 5px;padding-bottom: 5px;
         padding-top: 0px;
         min-height: 20px;
         position: relative;
@@ -399,11 +402,11 @@ footer{
   @media only screen and (max-width: 480px){
       
       body{
-  background-color: #EEE;
+      margin:5px;
 }
 #page{ margin:0;
-    padding:0;
-    font-family: "open sans",arial,sans-serif;
+    padding:5px;
+    
    
 }
           #sidebar{
@@ -416,16 +419,15 @@ footer{
         
             #content {
         padding-bottom: 10px;
-        margin:0;
-        padding:0;
-        width:440px;
-         height:1450px;
+        margin:0; margin-left: 5px;
+        padding:0; padding-bottom: 5px;padding-top: 5px;
+        width:430px;
+         height:1420px;
     }
     
     #menu{
-    background-color: whitesmoke;
-   height: 50px;
-  margin:0px;
+   height: 40px;
+  margin:5px;margin-bottom: 0px;
   border-bottom: 3px solid red;
   border-radius: 10px;
   
@@ -433,24 +435,24 @@ footer{
 }
 
 ul#menu1 {
-list-style: none;
-margin:0 auto;
+
+margin:0px;
 }
  
-#menu1 li {float: left;}
+
  
-#menu1 li a {
-  color: black;
-  font-weight: bold;
-  display:block;
-  line-height: 50px;
-  height: 40px;
-  width: 100px;
-  text-align: center;
-  text-decoration: none;
-}
-      #logo{
-    margin-left: 0px;
+
+     
+
+
+
+
+
+
+
+
+#logo{
+    margin-left: 5px;
     width: 50px;
 }
  form{ 

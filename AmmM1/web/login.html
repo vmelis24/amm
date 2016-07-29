@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="username,login">
         <meta name="description" content="login del cliente">
-        <link href="M2/css/style_css.css" rel="stylesheet" type="text/css" media="screen">
+        <link href="css/style_css.css" rel="stylesheet" type="text/css" media="screen">
         
        
     </head>
@@ -25,17 +25,17 @@ and open the template in the editor.
                 
                     
                     <div id="logo">
-                        <img src="M2/img/logo1.png" title="logo" alt="logo">
+                        <img src="img/logo1.png" title="logo" alt="logo">
                     </div>
                 
                     
                     <div id="menu"> 
                     
                     <ul id="menu1">
-                    <li ><a href="M2/descrizione.html">Home</a></li>
-                    <li><a href="M2/login.html">Login</a></li>
-                    <li><a href="M2/cliente.html">Prodotti</a></li>
-                    <li><a href="M2/venditore.html">Aggiungi</a></li>
+                    <li ><a href="descrizione.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="cliente.html">Prodotti</a></li>
+                    <li><a href="venditore.html">Aggiungi</a></li>
                     
                 </ul>
                         
@@ -50,10 +50,10 @@ and open the template in the editor.
                 
                 <h2>Navigazione</h2>
                         <ul>
-                           <li><a href="M2/descrizione.html">Home</a></li>
-                             <li><a href="M2/login.html">Login</a></li>
-                              <li><a href="M2/cliente.html">Visualizza i prodotti</a></li>
-                                <li><a href="M2/venditore.html">Aggiungi prodotto</a></li>
+                           <li><a href="descrizione.html">Home</a></li>
+                             <li><a href="login.html">Login</a></li>
+                              <li><a href="cliente.html">Visualizza i prodotti</a></li>
+                                <li><a href="venditore.html">Aggiungi prodotto</a></li>
                         </ul>
                 
                 
@@ -66,9 +66,9 @@ and open the template in the editor.
             <div id="content">
         
         <h2>Login</h2>
-        <form method="POST" action="Login">
-            
-          <input type="hidden" name="login" value="Login">
+        
+        <form method="post" action="login">
+        <input type="hidden" name="cmd" value="login">
           
           
             <div>
@@ -83,6 +83,7 @@ and open the template in the editor.
            
             
             <div>
+                
                 <input class="pulsante" type="submit" value="Invia">
                 <input class="pulsante" type="reset" value="Cancella">
             </div>

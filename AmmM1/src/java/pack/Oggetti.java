@@ -8,7 +8,6 @@ package pack;
 
 public class Oggetti {
     private int id;
-    private String ObjectSale;
     private String NomeProdotto;
     private String UrlProdotto;
     private String Descrizione;
@@ -27,20 +26,6 @@ public class Oggetti {
      */
     public void setId(int id) {
         this.id = id;
-    }
-
-    /**
-     * @return the ObjectSale
-     */
-    public String getObjectSale() {
-        return ObjectSale;
-    }
-
-    /**
-     * @param ObjectSale the ObjectSale to set
-     */
-    public void setObjectSale(String ObjectSale) {
-        this.ObjectSale = ObjectSale;
     }
 
     /**
